@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ReUseHub — good finds, second lives. Buy and sell quality pre-loved products.">
+  <title>ReUseHub | Good finds. Second lives.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="ReUseHub home">
+        <span class="brand-mark">↻</span>
+        <span class="brand-copy"><strong>ReUseHub</strong><small>Good finds. Second lives.</small></span>
+      </a>
+      <form class="search-bar" id="searchForm" role="search">
+        <span aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" placeholder="Search products, categories..." aria-label="Search products">
+        <button class="btn btn-primary search-button" type="submit">Search</button>
+      </form>
+      <nav class="header-actions" aria-label="Main navigation">
+        <a class="btn btn-quiet" href="#products">Browse</a>
+        <a class="btn btn-sell" href="#sell">＋ Sell Item</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero container">
+      <div class="hero-content">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> A smarter way to shop sustainably</span>
+        <h1>Pre-loved products.<br><span>Fresh possibilities.</span></h1>
+        <p>Give great products a second life. Discover useful finds at friendly prices, or turn things you no longer need into someone else's next favourite.</p>
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary btn-large">Explore products <span>→</span></a>
+          <a href="#sell" class="btn btn-outline btn-large">Start selling</a>
+        </div>
+        <div class="hero-proof">
+          <div class="proof-avatars"><span>🧑🏻</span><span>👩🏽</span><span>🧑🏾</span></div>
+          <span><strong>Buy thoughtfully.</strong> Reuse happily.</span>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of sustainable shopping">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-leaf leaf-one">✦</div><div class="art-leaf leaf-two">✿</div>
+        <div class="art-circle"><span class="art-spark">✧</span><span class="art-bag">🛍️</span><span class="art-recycle">♻</span></div>
+        <div class="floating-card floating-top"><span class="float-icon">🌱</span><span><b>Less waste</b><small>More value</small></span></div>
+        <div class="floating-card floating-bottom"><span class="float-icon">💙</span><span><b>Good finds</b><small>Great prices</small></span></div>
+      </div>
+    </section>
+
+    <section class="benefit-strip container" aria-label="Marketplace benefits">
+      <div><span class="benefit-icon">♻</span><span><b>Reuse more</b><small>Keep good things in use</small></span></div>
+      <div><span class="benefit-icon">₹</span><span><b>Save money</b><small>Find value in every listing</small></span></div>
+      <div><span class="benefit-icon">🤝</span><span><b>Community first</b><small>Local people, useful finds</small></span></div>
+    </section>
+
+    <section class="products-section container" id="products">
+      <div class="section-heading">
+        <div><span class="section-kicker">THE MARKETPLACE</span><h2>Buy &amp; Sell Used Products</h2><p>Good-quality pre-loved essentials, ready for their next chapter.</p></div>
+        <div class="listing-count"><span class="count-dot"></span><strong id="productCount">8</strong> items available</div>
+      </div>
+      <div class="filter-row" role="group" aria-label="Filter products by category">
+        <button class="filter-chip active" data-category="All Items" type="button">All Items <span class="chip-count" id="allCount">8</span></button>
+        <button class="filter-chip" data-category="Electronics" type="button">Electronics</button>
+        <button class="filter-chip" data-category="Cycles" type="button">Cycles</button>
+        <button class="filter-chip" data-category="Furniture" type="button">Furniture</button>
+        <button class="filter-chip" data-category="Accessories" type="button">Accessories</button>
+      </div>
+      <div class="results-meta"><span id="resultsLabel">Showing all products</span><button id="clearSearch" class="text-button" type="button" hidden>Clear search ×</button></div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden><span>🔎</span><h3>No products found</h3><p>Try another keyword or choose a different category.</p><button class="btn btn-outline" id="resetFilters" type="button">Show all products</button></div>
+    </section>
+
+    <section class="sell-section" id="sell">
+      <div class="container sell-layout">
+        <div class="sell-intro">
+          <span class="section-kicker light-kicker">GIVE IT A NEW HOME</span>
+          <h2>Have something<br>to sell?</h2>
+          <p>Someone out there might be looking for exactly what you no longer need. List it in just a few steps.</p>
+          <div class="sell-points"><div><span>✓</span> Simple and free to list</div><div><span>✓</span> Reach people looking for value</div><div><span>✓</span> Make reuse part of the routine</div></div>
+          <div class="sell-decoration">↗ <span>One person's unused<br>is another's useful.</span></div>
+        </div>
+        <form class="sell-form" id="sellForm">
+          <div class="form-heading"><div><h3>List your product</h3><p>Fill in the details to publish your listing.</p></div><span class="form-step">NEW LISTING</span></div>
+          <div class="form-grid">
+            <label class="field full">Product name <span>*</span><input name="name" required maxlength="70" placeholder="e.g. Bluetooth speaker"></label>
+            <label class="field">Category <span>*</span><select name="category" required><option value="">Choose category</option><option>Electronics</option><option>Cycles</option><option>Furniture</option><option>Accessories</option></select></label>
+            <label class="field">Selling price (₹) <span>*</span><input name="price" type="number" min="1" step="1" required placeholder="e.g. 1200"></label>
+            <label class="field">Product condition <span>*</span><select name="condition" required><option value="">Select condition</option><option>Like New</option><option>Excellent</option><option>Good</option><option>Fair</option></select></label>
+            <label class="field">Seller name <span>*</span><input name="seller" required maxlength="60" placeholder="Your name"></label>
+            <label class="field full">Description <span>*</span><textarea name="description" required rows="3" maxlength="350" placeholder="Share the key details, age, features, or anything buyers should know..."></textarea></label>
+          </div>
+          <button class="btn btn-sell form-submit" type="submit">＋ List My Product</button>
+          <p class="form-note">🔒 Demo project only — no payment or personal data is sent anywhere.</p>
+          <p class="form-message" id="sellMessage" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+    <section class="bottom-cta container"><div class="cta-icon">♻</div><div><h3>Better finds. Smaller footprint.</h3><p>Every second-hand purchase is a small step towards a more sustainable future.</p></div><a href="#products" class="btn btn-primary">Find your next find →</a></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#home"><span class="brand-mark">↻</span><span class="brand-copy"><strong>ReUseHub</strong><small>Good finds. Second lives.</small></span></a><p>Made for a more reusable world. <span>© <span id="year"></span> ReUseHub College Project</span></p><a href="#home" class="back-top">Back to top ↑</a></div></footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close dialog">×</button>
+      <div id="modalContent"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
