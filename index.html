@@ -10,7 +10,7 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="#home" aria-label="ReUseHub home">
+      <a class="brand" href="#buy" aria-label="ReUseHub home">
         <span class="brand-mark">↻</span>
         <span class="brand-copy"><strong>ReUseHub</strong><small>Good finds. Second lives.</small></span>
       </a>
@@ -19,15 +19,20 @@
         <input id="searchInput" type="search" placeholder="Search products, categories..." aria-label="Search products">
         <button class="btn btn-primary search-button" type="submit">Search</button>
       </form>
-      <nav class="header-actions" aria-label="Main navigation">
-        <a class="btn btn-quiet" href="#products">Browse</a>
-        <a class="btn btn-sell" href="#sell">＋ Sell Item</a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a class="nav-tab active" id="tabBuy" href="#buy">
+          <span class="tab-icon">🛍️</span> Buy Products
+        </a>
+        <a class="nav-tab" id="tabSell" href="#sell">
+          <span class="tab-icon">🏷️</span> Sell an Item
+        </a>
       </nav>
     </div>
   </header>
 
-  <main id="home">
-    <section class="hero container">
+  <!-- ==================== BUY PRODUCTS PAGE ==================== -->
+  <div id="pageBuy" class="page-view">
+    <section class="hero container" id="home">
       <div class="hero-content">
         <span class="eyebrow"><span class="eyebrow-dot"></span> A smarter way to shop sustainably</span>
         <h1>Pre-loved products.<br><span>Fresh possibilities.</span></h1>
@@ -73,6 +78,34 @@
       <div class="empty-state" id="emptyState" hidden><span>🔎</span><h3>No products found</h3><p>Try another keyword or choose a different category.</p><button class="btn btn-outline" id="resetFilters" type="button">Show all products</button></div>
     </section>
 
+    <section class="bottom-cta container"><div class="cta-icon">♻</div><div><h3>Better finds. Smaller footprint.</h3><p>Every second-hand purchase is a small step towards a more sustainable future.</p></div><a href="#products" class="btn btn-primary">Find your next find →</a></section>
+  </div>
+
+  <!-- ==================== SELL PRODUCTS PAGE ==================== -->
+  <div id="pageSell" class="page-view" hidden>
+    <section class="sell-hero container">
+      <div class="sell-hero-inner">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> SELLER DASHBOARD</span>
+        <h1>Sell Your Pre-Loved Products.<br><span>Give Them a New Home.</span></h1>
+        <p>Someone in your community is looking for exactly what you no longer need. List your item in seconds or manage all the products you have already put up for sale below.</p>
+        <div class="sell-stats-row">
+          <div class="sell-stat-card">
+            <span class="stat-num" id="sellerCountTotal">8</span>
+            <span class="stat-lbl">Products on Sale</span>
+          </div>
+          <div class="sell-stat-card">
+            <span class="stat-num" id="sellerCategoriesTotal">4</span>
+            <span class="stat-lbl">Active Categories</span>
+          </div>
+          <div class="sell-stat-card">
+            <span class="stat-num" id="sellerValueTotal">₹36,300</span>
+            <span class="stat-lbl">Total Inventory Value</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELL FORM (Identical layout to record output) -->
     <section class="sell-section" id="sell">
       <div class="container sell-layout">
         <div class="sell-intro">
@@ -90,6 +123,7 @@
             <label class="field">Selling price (₹) <span>*</span><input name="price" type="number" min="1" step="1" required placeholder="e.g. 1200"></label>
             <label class="field">Product condition <span>*</span><select name="condition" required><option value="">Select condition</option><option>Like New</option><option>Excellent</option><option>Good</option><option>Fair</option></select></label>
             <label class="field">Seller name <span>*</span><input name="seller" required maxlength="60" placeholder="Your name"></label>
+            <label class="field">Location <input name="location" maxlength="60" placeholder="e.g. Chennai, Tamil Nadu"></label>
             <label class="field full">Description <span>*</span><textarea name="description" required rows="3" maxlength="350" placeholder="Share the key details, age, features, or anything buyers should know..."></textarea></label>
           </div>
           <button class="btn btn-sell form-submit" type="submit">＋ List My Product</button>
@@ -98,11 +132,60 @@
         </form>
       </div>
     </section>
-    <section class="bottom-cta container"><div class="cta-icon">♻</div><div><h3>Better finds. Smaller footprint.</h3><p>Every second-hand purchase is a small step towards a more sustainable future.</p></div><a href="#products" class="btn btn-primary">Find your next find →</a></section>
-  </main>
 
-  <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#home"><span class="brand-mark">↻</span><span class="brand-copy"><strong>ReUseHub</strong><small>Good finds. Second lives.</small></span></a><p>Made for a more reusable world. <span>© <span id="year"></span> ReUseHub College Project</span></p><a href="#home" class="back-top">Back to top ↑</a></div></footer>
+    <!-- ACTIVE LISTINGS TABLE (Products already put up for sale) -->
+    <section class="listed-items-section container" id="listedProductsSection">
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">ACTIVE INVENTORY ON SALE</span>
+          <h2>Products Listed for Sale</h2>
+          <p>All items currently put up for sale by sellers with full pricing, condition, and seller details.</p>
+        </div>
+        <div class="sell-inventory-actions">
+          <button class="btn btn-outline btn-small" id="btnResetDemo" type="button" title="Reset sample products to original state">↺ Reset Sample Data</button>
+          <div class="listing-count"><span class="count-dot"></span><strong id="sellListCount">8</strong> items on sale</div>
+        </div>
+      </div>
 
+      <div class="seller-table-wrap">
+        <table class="seller-table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Selling Price</th>
+              <th>Condition</th>
+              <th>Seller</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="sellerTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+      <div class="seller-empty" id="sellerEmptyState" hidden>
+        <span>📦</span>
+        <h3>No products currently listed for sale</h3>
+        <p>Use the form above to list your first pre-loved item!</p>
+      </div>
+    </section>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="#buy">
+        <span class="brand-mark">↻</span>
+        <span class="brand-copy"><strong>ReUseHub</strong><small>Good finds. Second lives.</small></span>
+      </a>
+      <p>Made for a more reusable world. <span>© <span id="year"></span> ReUseHub College Project</span></p>
+      <a href="#buy" class="back-top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- MODALS -->
   <div class="modal-backdrop" id="modalBackdrop" hidden>
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button class="modal-close" id="modalClose" type="button" aria-label="Close dialog">×</button>
@@ -110,6 +193,7 @@
     </section>
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
